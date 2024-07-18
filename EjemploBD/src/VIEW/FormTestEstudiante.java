@@ -37,6 +37,11 @@ public class FormTestEstudiante extends javax.swing.JFrame {
         });
 
         jButton3.setText("Insertar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cerrar");
 
@@ -45,15 +50,20 @@ public class FormTestEstudiante extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Nota1", "Nota2", "Promedio", "Estado"
+                "Nombre", "Nota1", "Nota2", "Promedio", "Estado", "Cedula"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -102,11 +112,19 @@ public class FormTestEstudiante extends javax.swing.JFrame {
         while(modelo.getRowCount() > 0)
             this.modelo.removeRow(0);
         ArrayList<Estudiante> lstEst = new ArrayList<Estudiante>();
-        ProcesarEstudiantes procesarEstudiantes = new ProcesarEstudiantes(lstEst);
+        ProcesarEstudiantes procesarEstudiantes = new ProcesarEstudiantes();
         lstEst = procesarEstudiantes.getLstEstudiantes();
         for (Estudiante est : lstEst) 
-            this.modelo.addRow(new Object[]{est.nombreEst, est.nota1, est.nota2, est.promedio, est.estado});
+            this.modelo.addRow(new Object[]{est.nombreEst, est.nota1, est.nota2, est.promedio, est.estado, est.cedula});
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1KeyPressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

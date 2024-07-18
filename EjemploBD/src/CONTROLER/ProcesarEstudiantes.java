@@ -5,8 +5,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 public class ProcesarEstudiantes {
     public ArrayList<Estudiante> lstEstudiantes;
-    public ProcesarEstudiantes(ArrayList<Estudiante> lstEstudiantes) {
-        this.lstEstudiantes = lstEstudiantes;
+    
+    public ProcesarEstudiantes() {
+        lstEstudiantes = new ArrayList<>();
     }
     public void calculoPromedios(){
         for(Estudiante est : lstEstudiantes)
@@ -17,9 +18,25 @@ public class ProcesarEstudiantes {
             est.estado = (est.promedio >= 7) ? "Aprobado" : "Reprobado";
     }
     public void insertarEstudiante(Estudiante estudiante){
+        System.out.println("Insertar....");
         (new ConeccionDB()).insertarEstudiante(estudiante);
     }
+    public void actualizarEstudiante(Estudiante estudiante) {
+        (new ConeccionDB()).actualizarEstudiante(estudiante);
+    }
+
+    public void eliminarEstudiante(Estudiante estudiante) {
+        (new ConeccionDB()).EliminarEstudiante(estudiante);
+    }
+    
     public ArrayList<Estudiante> getLstEstudiantes() {
-        return (new ConeccionDB()).getLstEstudiantes();
+        return lstEstudiantes;
+    }
+
+    public void setLstEstudiantes(Estudiante est) {
+        calculoPromedios();
+        calculoEstados();
+        lstEstudiantes.add(est);
+
     }
 }
